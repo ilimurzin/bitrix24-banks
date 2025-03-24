@@ -18,7 +18,8 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.73.1",
         "phpstan/phpstan": "^2.1.10",
-        "phpyh/coding-standard": "^2.6.2"
+        "phpyh/coding-standard": "^2.6.2",
+        "rector/rector": "^2.0.10"
     },
     "config": {
         "allow-plugins": {
@@ -63,12 +64,16 @@
         ],
         "cs:check": "php-cs-fixer check",
         "cs:fix": "php-cs-fixer fix",
-        "phpstan": "phpstan"
+        "phpstan": "phpstan",
+        "rector:check": "rector process --dry-run",
+        "rector:fix": "rector process"
     },
     "scripts-descriptions": {
         "cs:check": "Check coding standards",
-        "cs:fix": "Fix coding standards",
-        "phpstan": "Run code analysis"
+        "cs:fix": "Apply coding standards",
+        "phpstan": "Run code analysis",
+        "rector:check": "Check rector rules",
+        "rector:fix": "Apply rector rules"
     },
     "conflict": {
         "symfony/symfony": "*"
