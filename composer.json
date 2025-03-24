@@ -17,7 +17,8 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.73.1",
-        "phpyh/coding-standard": "^2.6"
+        "phpstan/phpstan": "^2.1.10",
+        "phpyh/coding-standard": "^2.6.2"
     },
     "config": {
         "allow-plugins": {
@@ -61,11 +62,13 @@
             "@auto-scripts"
         ],
         "cs:check": "php-cs-fixer check",
-        "cs:fix": "php-cs-fixer fix"
+        "cs:fix": "php-cs-fixer fix",
+        "phpstan": "phpstan"
     },
     "scripts-descriptions": {
         "cs:check": "Check coding standards",
-        "cs:fix": "Fix coding standards"
+        "cs:fix": "Fix coding standards",
+        "phpstan": "Run code analysis"
     },
     "conflict": {
         "symfony/symfony": "*"
