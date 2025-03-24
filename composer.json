@@ -7,13 +7,17 @@
         "php": "^8.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "baldinof/roadrunner-bundle": "^3.2",
+        "baldinof/roadrunner-bundle": "^3.2.2",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
         "symfony/flex": "^2.5",
         "symfony/framework-bundle": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/yaml": "7.2.*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.73.1",
+        "phpyh/coding-standard": "^2.6"
     },
     "config": {
         "allow-plugins": {
@@ -55,7 +59,13 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
-        ]
+        ],
+        "cs:check": "php-cs-fixer check",
+        "cs:fix": "php-cs-fixer fix"
+    },
+    "scripts-descriptions": {
+        "cs:check": "Check coding standards",
+        "cs:fix": "Fix coding standards"
     },
     "conflict": {
         "symfony/symfony": "*"
