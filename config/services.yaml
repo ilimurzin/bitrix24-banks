@@ -22,3 +22,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    App\Controller\InstallController:
+        arguments:
+            $clientId: '%env(resolve:CLIENT_ID)%'
+            $clientSecret: '%env(resolve:CLIENT_SECRET)%'
+            $scope: '%env(resolve:SCOPE)%'
+            $userTypeId: '%env(resolve:USER_TYPE_ID)%'
+            $handlerUrl: '%env(resolve:HANDLER_URL)%'
