@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+  <style>
+    body {
+      background-color: #f9fafb;
+      color: #424956;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+      font-size: 14px;
+      margin: 2px 0;
+    }
+  </style>
+{% endblock %}
+
+{% block body %}
+  <div id="bank"></div>
+  <script>
+    BX24.ready(function () {
+      BX24.init(function () {
+        BX24.placement.call('getValue', {}, function (value) {
+          if (value[0]) {
+            document.getElementById('bank').innerHTML = value
+          } else {
+            document.getElementById('bank').innerHTML = 'не выбран'
+          }
+        })
+      })
+    })
+  </script>
+{% endblock %}
