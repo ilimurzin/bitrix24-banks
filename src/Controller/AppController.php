@@ -21,19 +21,9 @@ final class AppController extends AbstractController
     {
         $placementRequest = new PlacementRequest($request);
 
-        return new Response(
-            content: <<<HTML
-                <!doctype html>
-                <html lang="ru">
-                <head>
-                <title>Справочник банков</title>
-                <script src="//api.bitrix24.com/api/v1/"></script>
-                </head>
-                <body>
-                Placement {$placementRequest->getCode()} at {$placementRequest->getDomainUrl()}
-                </body>
-                </html>
-                HTML,
-        );
+        return $this->render('index.html.twig', [
+            'code' => $placementRequest->getCode(),
+            'domain_url' => $placementRequest->getDomainUrl(),
+        ]);
     }
 }

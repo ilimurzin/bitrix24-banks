@@ -45,25 +45,6 @@ final class InstallController extends AbstractController
             'Справочник банков',
         );
 
-        return new Response(
-            content: <<<'HTML'
-                <!doctype html>
-                <html lang="ru">
-                <head>
-                <title>Справочник банков</title>
-                <script src="//api.bitrix24.com/api/v1/"></script>
-                </head>
-                <body>
-                <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    BX24.init(function() {
-                        BX24.installFinish()
-                    })
-                })
-                </script>
-                </body>
-                </html>
-                HTML,
-        );
+        return $this->render('install.html.twig');
     }
 }

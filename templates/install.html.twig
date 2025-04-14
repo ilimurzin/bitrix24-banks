@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+  <h1>Приложение устанавливается...</h1>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      BX24.init(function () {
+        BX24.installFinish()
+      })
+    })
+  </script>
+{% endblock %}
