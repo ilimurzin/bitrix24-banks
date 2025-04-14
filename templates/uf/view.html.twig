@@ -15,11 +15,20 @@
 {% block body %}
   <div id="bank"></div>
   <script>
+    const banks = {{ banks|json_encode|raw }};
+
     BX24.ready(function () {
       BX24.init(function () {
         BX24.placement.call('getValue', {}, function (value) {
           if (value[0]) {
-            document.getElementById('bank').innerHTML = value
+            const bic = value[0]
+            const filteredBanks = banks.filter(bank => bank.bic === bic)
+            if (filteredBanks.length !== 0) {
+              const bank = filteredBanks[0]
+              document.getElementById('bank').innerHTML = `${bank.name}<br>БИК ${bank.bic}`
+            } else {
+              document.getElementById('bank').innerHTML = `БИК ${bic}`
+            }
           } else {
             document.getElementById('bank').innerHTML = 'не выбран'
           }

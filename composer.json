@@ -5,6 +5,7 @@
         "php": "^8.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "ext-simplexml": "*",
         "baldinof/roadrunner-bundle": "^3.2.2",
         "bitrix24/b24phpsdk": "^1.2",
         "symfony/console": "~7.2.1",

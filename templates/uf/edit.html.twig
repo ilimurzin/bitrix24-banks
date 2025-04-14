@@ -57,41 +57,51 @@
     <div id="suggestions"></div>
   </main>
   <script>
-    const banks = [
-      {
-        bik: '123',
-        name: 'test'
-      },
-      {
-        bik: '321',
-        name: 'name'
-      },
-    ]
+    const banks = {{ banks|json_encode|raw }};
 
     const input = document.getElementById('bank')
     const suggestionContainer = document.getElementById('suggestions')
+
+    BX24.ready(function () {
+      BX24.init(function () {
+        BX24.placement.call('getValue', {}, function (value) {
+          if (value[0]) {
+            const bic = value[0]
+            const filteredBanks = banks.filter(bank => bank.bic === bic)
+            if (filteredBanks.length !== 0) {
+              const bank = filteredBanks[0]
+              input.value = `[${bank.bic}] ${bank.name}`
+            } else {
+              input.value = bic
+            }
+          } else {
+            input.value = ''
+          }
+        })
+      })
+    })
 
     const suggestionListener = function () {
       suggestionContainer.innerHTML = ''
 
       if (!this.value) {
         suggestionContainer.style.display = 'none'
-        BX24.placement.call('setValue', '');
+        BX24.placement.call('setValue', '')
         return
       }
 
       const filteredBanks = banks.filter(bank =>
-        bank.bik.includes(this.value) || bank.name.toLowerCase().includes(this.value.toLowerCase())
+        `[${bank.bic}] ${bank.name}`.toLowerCase().includes(this.value.toLowerCase())
       )
 
       if (filteredBanks.length > 0) {
         filteredBanks.forEach(bank => {
           const suggestionItem = document.createElement('div')
           suggestionItem.classList.add('suggestion')
-          suggestionItem.textContent = `[${bank.bik}] ${bank.name}`
+          suggestionItem.textContent = `[${bank.bic}] ${bank.name}`
           suggestionItem.addEventListener('click', () => {
-            BX24.placement.call('setValue', bank.bik);
-            this.value = `[${bank.bik}] ${bank.name}`
+            BX24.placement.call('setValue', bank.bic)
+            this.value = `[${bank.bic}] ${bank.name}`
             suggestionContainer.style.display = 'none'
           })
           suggestionContainer.appendChild(suggestionItem)
