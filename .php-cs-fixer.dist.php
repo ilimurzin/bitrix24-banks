@@ -8,7 +8,10 @@ use PHPyh\CodingStandard\PhpCsFixerCodingStandard;
 
 $finder = (new Finder())
     ->in(__DIR__)
-    ->exclude('var')
+    ->exclude([
+        'var',
+        'config',
+    ])
     ->append([
         __FILE__,
         __DIR__ . '/bin/console',
