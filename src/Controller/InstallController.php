@@ -38,12 +38,51 @@ final class InstallController extends AbstractController
             ),
         );
 
-        $serviceBuilder->getPlacementScope()->userfieldtype()->add(
-            $this->userTypeId,
-            $this->handlerUrl,
-            'Банк',
-            'Справочник банков',
-        );
+        $applicationId = $serviceBuilder->getMainScope()->main()->getApplicationInfo()->applicationInfo()->ID;
+        $userTypeId = $applicationId . '_' . $this->userTypeId;
+        $userTypeInstalled = false;
+
+        foreach ($serviceBuilder->getPlacementScope()->userfieldtype()->list()->getUserFieldTypes() as $type) {
+            if ($type->USER_TYPE_ID === $userTypeId) {
+                $userTypeInstalled = true;
+            }
+        }
+
+        if (!$userTypeInstalled) {
+            $serviceBuilder->getPlacementScope()->userfieldtype()->add(
+                $userTypeId,
+                $this->handlerUrl,
+                'Банк',
+                'Справочник банков',
+            );
+        }
+
+        $types = ['contact', 'lead', 'company', 'deal'];
+        $fieldName = mb_strtoupper($userTypeId);
+
+        foreach ($types as $type) {
+            $response = $serviceBuilder->core->call(
+                "crm.{$type}.userfield.list",
+                [
+                    'filter' => [
+                        'FIELD_NAME' => 'UF_CRM_' . $fieldName,
+                    ],
+                ],
+            );
+
+            if (!$response->getResponseData()->getResult()) {
+                $serviceBuilder->core->call(
+                    "crm.{$type}.userfield.add",
+                    [
+                        'fields' => [
+                            'USER_TYPE_ID' => $userTypeId,
+                            'FIELD_NAME' => $fieldName,
+                            'LABEL' => 'Банк',
+                        ],
+                    ],
+                );
+            }
+        }
 
         return $this->render('install.html.twig');
     }

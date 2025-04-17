@@ -45,9 +45,6 @@ final class AppController extends AbstractController
             throw new BadRequestHttpException("Unsupported MODE `{$mode}`");
         }
 
-        return $this->render('index.html.twig', [
-            'code' => $placementRequest->getCode(),
-            'domain_url' => $placementRequest->getDomainUrl(),
-        ]);
+        return $this->render('index.html.twig');
     }
 }
