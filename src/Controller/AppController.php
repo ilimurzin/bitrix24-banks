@@ -47,4 +47,13 @@ final class AppController extends AbstractController
 
         return $this->render('index.html.twig');
     }
+
+    #[Route(
+        path: '/',
+        methods: ['HEAD', 'GET'],
+    )]
+    public function stub(): Response
+    {
+        return new Response('For Bitrix');
+    }
 }

@@ -86,4 +86,13 @@ final class InstallController extends AbstractController
 
         return $this->render('install.html.twig');
     }
+
+    #[Route(
+        path: 'install',
+        methods: ['HEAD', 'GET'],
+    )]
+    public function stub(): Response
+    {
+        return new Response('For Bitrix');
+    }
 }
