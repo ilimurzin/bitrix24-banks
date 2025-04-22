@@ -30,3 +30,7 @@ services:
             $scope: '%env(resolve:SCOPE)%'
             $userTypeId: '%env(resolve:USER_TYPE_ID)%'
             $handlerUrl: '%env(resolve:HANDLER_URL)%'
+
+    App\Command\GetBanksCommand:
+        arguments:
+            $url: 'https://www.cbr.ru/s/newbik'
