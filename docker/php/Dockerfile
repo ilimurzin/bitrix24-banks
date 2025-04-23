@@ -1,13 +1,11 @@
 FROM ghcr.io/roadrunner-server/roadrunner:2024.3 AS roadrunner
+FROM ghcr.io/mlocati/php-extension-installer:2.7 AS php-extension-installer
 FROM php:8.3-cli-alpine3.21
 
 COPY --from=roadrunner /usr/bin/rr /usr/local/bin/rr
+COPY --from=php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/install-php-extensions
 
-ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-
-RUN install-php-extensions opcache intl bcmath sockets zip
-
-RUN install-php-extensions @composer
+RUN install-php-extensions opcache intl bcmath sockets zip @composer
 
 WORKDIR /usr/src/app
 
