@@ -7,6 +7,8 @@ ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/relea
 
 RUN install-php-extensions opcache intl bcmath sockets zip
 
+RUN install-php-extensions @composer
+
 WORKDIR /usr/src/app
 
 CMD rr serve -c .rr.dev.yaml --debug
