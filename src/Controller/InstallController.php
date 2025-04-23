@@ -7,6 +7,7 @@ namespace App\Controller;
 use Bitrix24\SDK\Core\Credentials\ApplicationProfile;
 use Bitrix24\SDK\Core\Credentials\Scope;
 use Bitrix24\SDK\Services\ServiceBuilderFactory;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,6 +21,7 @@ final class InstallController extends AbstractController
         private readonly string $scope,
         private readonly string $userTypeId,
         private readonly string $handlerUrl,
+        private readonly LoggerInterface $logger,
     ) {}
 
     #[Route(
@@ -36,6 +38,7 @@ final class InstallController extends AbstractController
                 $this->clientSecret,
                 Scope::initFromString($this->scope),
             ),
+            logger: $this->logger,
         );
 
         $applicationId = $serviceBuilder->getMainScope()->main()->getApplicationInfo()->applicationInfo()->ID;
