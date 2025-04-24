@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Attribute\Route;
 final class AppController extends AbstractController
 {
     public function __construct(
-        private Banks $banks,
+        private readonly Banks $banks,
     ) {}
 
     #[Route(
