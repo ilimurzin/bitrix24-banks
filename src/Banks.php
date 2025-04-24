@@ -13,6 +13,9 @@ final readonly class Banks
         private string $filePath,
     ) {}
 
+    /**
+     * @return Bank[]
+     */
     public function all(): array
     {
         // for now get from file
