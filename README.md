@@ -8,13 +8,13 @@
 
 ```sh
 composer install
-docker compose up
+symfony server:start
 ```
 
 Для тестирования на bitrix24.ru можно воспользоваться утилитой vk-tunnel:
 
 ```sh
-vk-tunnel --insecure=1 --http-protocol=http --ws-protocol=ws --host=localhost --port=8080 --timeout=5000
+vk-tunnel --insecure=1 --http-protocol=http --ws-protocol=ws --host=localhost --port=8000 --timeout=5000
 ```
 
 Полученный урл подставить в переменную среды HANDLER_URL.
