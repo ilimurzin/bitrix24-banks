@@ -15,7 +15,7 @@
 {% block body %}
   <div id="bank"></div>
   <script>
-    const banks = {{ banks|json_encode|raw }};
+    const banks = {{ banks|raw }};
 
     BX24.ready(function () {
       BX24.init(function () {

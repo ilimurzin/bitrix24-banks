@@ -57,7 +57,7 @@
     <div id="suggestions"></div>
   </main>
   <script>
-    const banks = {{ banks|json_encode|raw }};
+    const banks = {{ banks|raw }};
 
     const input = document.getElementById('bank')
     const suggestionContainer = document.getElementById('suggestions')

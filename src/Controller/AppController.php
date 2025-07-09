@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-use App\Banks;
 use Bitrix24\SDK\Application\Requests\Placement\PlacementRequest;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -14,10 +13,6 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class AppController extends AbstractController
 {
-    public function __construct(
-        private readonly Banks $banks,
-    ) {}
-
     #[Route(
         path: '/',
         name: 'handler',
@@ -32,13 +27,13 @@ final class AppController extends AbstractController
 
             if ($mode === 'view') {
                 return $this->render('uf/view.html.twig', [
-                    'banks' => $this->banks->all(),
+                    'banks' => file_get_contents(__DIR__ . '/../../public/v1/banks.json'),
                 ]);
             }
 
             if ($mode === 'edit') {
                 return $this->render('uf/edit.html.twig', [
-                    'banks' => $this->banks->all(),
+                    'banks' => file_get_contents(__DIR__ . '/../../public/v1/banks.json'),
                 ]);
             }
 
