@@ -18,6 +18,9 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate --no-check-publish
 
+    - name: Check if composer.json is normalized
+      run: composer normalize --dry-run
+
     - name: Check coding standards
       run: composer cs:check
 

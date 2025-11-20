@@ -8,14 +8,14 @@
         "ext-simplexml": "*",
         "ext-zip": "*",
         "bitrix24/b24phpsdk": "^1.8",
-        "symfony/console": "7.3.*",
-        "symfony/dotenv": "7.3.*",
+        "symfony/console": "~7.3.0",
+        "symfony/dotenv": "~7.3.0",
         "symfony/flex": "^2.10",
-        "symfony/framework-bundle": "7.3.*",
+        "symfony/framework-bundle": "~7.3.0",
         "symfony/monolog-bundle": "^3.10",
-        "symfony/runtime": "7.3.*",
-        "symfony/twig-bundle": "7.3.*",
-        "symfony/yaml": "7.3.*"
+        "symfony/runtime": "~7.3.0",
+        "symfony/twig-bundle": "~7.3.0",
+        "symfony/yaml": "~7.3.0"
     },
     "require-dev": {
         "ergebnis/composer-normalize": "^2.48.2",
